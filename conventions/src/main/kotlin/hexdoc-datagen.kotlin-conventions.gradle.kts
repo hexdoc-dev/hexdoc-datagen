@@ -6,6 +6,14 @@ interface KotlinConventionsPluginExtension {
 
 val extension = extensions.create<KotlinConventionsPluginExtension>("kotlinConventions")
 
+val versionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
+extension.versions.convention(provider {
+    versionCatalog.versionAliases.associate {
+        // both "." and "-" cause issues with expand :/
+        it.replace(".", "_") to versionCatalog.findVersion(it).get().requiredVersion
+    }
+})
+
 // build logic
 
 plugins {
@@ -70,14 +78,6 @@ tasks {
 
     processResources.configure {
         exclude(".cache")
-
-        extension.versions.convention(provider {
-            val versionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
-            versionCatalog.versionAliases.associate {
-                // both "." and "-" cause issues with expand :/
-                it.replace(".", "_") to versionCatalog.findVersion(it).get().requiredVersion
-            }
-        })
 
         // allow referencing values from libs.versions.toml in Fabric/Forge mod configs
         val dependencyVersions = mapOf(
