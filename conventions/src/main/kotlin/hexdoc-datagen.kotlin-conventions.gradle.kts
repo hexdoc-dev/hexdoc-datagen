@@ -1,7 +1,4 @@
-import org.gradle.accessors.dm.LibrariesForLibs
-
-val libs = the<LibrariesForLibs>()
-val versionCatalog: VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
+// plugin config
 
 interface KotlinConventionsPluginExtension {
     val versions: MapProperty<String, String>
@@ -9,14 +6,7 @@ interface KotlinConventionsPluginExtension {
 
 val extension = extensions.create<KotlinConventionsPluginExtension>("kotlinConventions")
 
-extension.versions.convention(provider {
-    versionCatalog.versionAliases.associate {
-        // both "." and "-" cause issues with expand :/
-        it.replace(".", "_") to versionCatalog.findVersion(it).get().requiredVersion
-    }
-})
-
-// --- build logic ---
+// build logic
 
 plugins {
     java
@@ -80,6 +70,14 @@ tasks {
 
     processResources.configure {
         exclude(".cache")
+
+        extension.versions.convention(provider {
+            val versionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
+            versionCatalog.versionAliases.associate {
+                // both "." and "-" cause issues with expand :/
+                it.replace(".", "_") to versionCatalog.findVersion(it).get().requiredVersion
+            }
+        })
 
         // allow referencing values from libs.versions.toml in Fabric/Forge mod configs
         val dependencyVersions = mapOf(

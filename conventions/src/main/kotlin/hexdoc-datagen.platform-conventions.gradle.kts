@@ -1,9 +1,3 @@
-import org.gradle.accessors.dm.LibrariesForLibs
-
-val libs = the<LibrariesForLibs>()
-
-// --- build logic ---
-
 plugins {
     id("hexdoc-datagen.common-conventions")
 }

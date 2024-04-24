@@ -41,9 +41,8 @@ asm-commons  = { module="org.ow2.asm:asm-commons", version.ref="asm" }
 asm-tree     = { module="org.ow2.asm:asm-tree", version.ref="asm" }
 asm-util     = { module="org.ow2.asm:asm-util", version.ref="asm" }
 
-# plugins applied in buildSrc
+[plugins]
+kotlin-jvm = { id="org.jetbrains.kotlin.jvm", version.ref="kotlin" }
 
-kotlin-plugin = { module="org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref="kotlin" }
-
-architectury-plugin = { module="architectury-plugin:architectury-plugin.gradle.plugin", version.ref="architectury-plugin" }
-architectury-loom   = { module="dev.architectury.loom:dev.architectury.loom.gradle.plugin", version.ref="architectury-loom" }
+architectury      = { id="architectury-plugin", version.ref="architectury-plugin" }
+architectury-loom = { id="dev.architectury.loom", version.ref="architectury-loom" }

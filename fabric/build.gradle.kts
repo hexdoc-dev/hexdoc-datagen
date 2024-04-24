@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.tooling.core.closure
-
 plugins {
     id("hexdoc-datagen.platform-conventions")
 }
