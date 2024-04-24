@@ -43,6 +43,10 @@ object HexdocPatternRegistry {
 
     // https://github.com/Cypher121/hexbound/blob/dd1e93bb95/src/main/kotlin/coffee/cypher/hexbound/docgen/Docgen.kt#L35
     fun getSourcePath(action: Action): String? {
+        // don't try to find classes from external sources
+        val codeSource = action::class.java.protectionDomain.codeSource.location.file
+        if (codeSource.endsWith(".jar")) return null
+
         val sourceFile = action::class.declaredMemberFunctions.first().let {
             val args = Array<Any?>(it.parameters.size - 1) { null }
 
@@ -63,10 +67,6 @@ object HexdocPatternRegistry {
 
             stackTrace[0].fileName!!
         }
-
-        // don't try to find classes from external sources
-//        val codeSource = action::class.java.protectionDomain.codeSource.location.file
-//        if (codeSource.endsWith(".jar")) return null
 
         val sourcePackage = action::class.java.packageName.replace(".", "/")
 
