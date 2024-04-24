@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "hexdoc_datagen",
+  "version": "${modVersion}",
+  "name": "hexdoc-datagen",
+  "description": "Datagen provider for hexdoc projects.",
+  "authors": [
+    "object-Object"
+  ],
+  "contact": {
+    "homepage": "https://hexdoc.hexxy.media",
+    "sources": "https://github.com/hexdoc-dev/hexdoc-datagen"
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "media.hexxy.hexdoc.datagen.fabric.HexdocDatagenFabric"
+    ]
+  },
+  "mixins": [
+    "hexdoc_datagen-common.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "${versions.minecraft}",
+    "fabricloader": ">=${versions.fabric_loader}",
+    "fabric-api": "*",
+    "architectury": ">=${versions.architectury}",
+    "hexcasting": "${versions.hexcasting}"
+  }
+}

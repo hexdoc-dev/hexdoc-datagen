@@ -1,0 +1,49 @@
+[versions]
+java = "17"
+
+kotlin = "1.9.22"
+
+minecraft = { strictly="1.19.2" }
+parchment = "2022.11.27"
+
+architectury = "6.6.92"
+architectury-plugin = { require="[3.4, 3.5[" }
+architectury-loom = { require="[1.5, 1.6[" }
+
+fabric-loader = "0.14.21"
+fabric-api = "0.76.0+1.19.2"
+
+hexcasting = "[0.10.0, 0.11.0["
+
+asm = "9.7"
+
+[bundles]
+asm = ["asm", "asm-analysis", "asm-commons", "asm-tree", "asm-util"]
+
+[libraries]
+kotlin-stdlib        = { module="org.jetbrains.kotlin:kotlin-stdlib-jdk8" }
+
+minecraft = { module="com.mojang:minecraft", version.ref="minecraft" }
+parchment = { module="org.parchmentmc.data:parchment-1.19.2", version.ref="parchment" }
+
+architectury        = { module="dev.architectury:architectury", version.ref="architectury" }
+architectury-fabric = { module="dev.architectury:architectury-fabric", version.ref="architectury" }
+
+fabric-loader = { module="net.fabricmc:fabric-loader", version.ref="fabric-loader" }
+fabric-api    = { module="net.fabricmc.fabric-api:fabric-api", version.ref="fabric-api" }
+
+hexcasting-common = { module="at.petra-k.hexcasting:hexcasting-common-1.19.2", version.ref="hexcasting" }
+hexcasting-fabric = { module="at.petra-k.hexcasting:hexcasting-fabric-1.19.2", version.ref="hexcasting" }
+
+asm          = { module="org.ow2.asm:asm", version.ref="asm" }
+asm-analysis = { module="org.ow2.asm:asm-analysis", version.ref="asm" }
+asm-commons  = { module="org.ow2.asm:asm-commons", version.ref="asm" }
+asm-tree     = { module="org.ow2.asm:asm-tree", version.ref="asm" }
+asm-util     = { module="org.ow2.asm:asm-util", version.ref="asm" }
+
+# plugins applied in buildSrc
+
+kotlin-plugin = { module="org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref="kotlin" }
+
+architectury-plugin = { module="architectury-plugin:architectury-plugin.gradle.plugin", version.ref="architectury-plugin" }
+architectury-loom   = { module="dev.architectury.loom:dev.architectury.loom.gradle.plugin", version.ref="architectury-loom" }
