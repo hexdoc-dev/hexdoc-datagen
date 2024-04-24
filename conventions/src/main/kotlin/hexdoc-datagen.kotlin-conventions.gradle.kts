@@ -1,4 +1,3 @@
-import gradle.kotlin.dsl.accessors._5c58a86a005ee3e7f15d94bb6da8d721.implementation
 import org.gradle.accessors.dm.LibrariesForLibs
 
 val libs = the<LibrariesForLibs>()
