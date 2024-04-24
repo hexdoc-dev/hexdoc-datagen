@@ -3,7 +3,7 @@ package media.hexxy.hexdoc.datagen.mixin;
 import at.petrak.hexcasting.api.PatternRegistry;
 import at.petrak.hexcasting.api.spell.Action;
 import at.petrak.hexcasting.api.spell.math.HexPattern;
-import media.hexxy.hexdoc.datagen.patterns.HexdocPatternRegistry;
+import media.hexxy.hexdoc.datagen.common.patterns.HexdocPatternRegistry;
 import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
