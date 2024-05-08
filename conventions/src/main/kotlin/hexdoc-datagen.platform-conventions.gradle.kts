@@ -7,13 +7,13 @@ architectury {
 }
 
 configurations {
-    val common = create("common")
-    create("shadowCommon")
+    register("common")
+    register("shadowCommon")
     compileClasspath {
-        extendsFrom(common)
+        extendsFrom(get("common"))
     }
     runtimeClasspath {
-        extendsFrom(common)
+        extendsFrom(get("common"))
     }
 }
 
