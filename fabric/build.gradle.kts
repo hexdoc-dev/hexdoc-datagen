@@ -2,8 +2,8 @@ plugins {
     id("hexdoc-datagen.platform-conventions")
 }
 
-commonConventions {
-    platform("fabric")
+architectury {
+    fabric()
 }
 
 kotlinConventions {
@@ -18,14 +18,13 @@ kotlinConventions {
     }
 }
 
-architectury {
-    fabric()
+commonConventions {
+    platform("fabric")
 }
 
-configurations {
-    "developmentFabric" {
-        extendsFrom(get("common"))
-    }
+platformConventions {
+    developmentConfiguration("developmentFabric")
+    shadowCommonConfiguration("transformProductionFabric")
 }
 
 repositories {

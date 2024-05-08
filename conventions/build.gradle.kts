@@ -19,6 +19,7 @@ dependencies {
     implementation(libs.plugins.kotlin.jvm.toLibrary())
     implementation(libs.plugins.architectury.toLibrary())
     implementation(libs.plugins.architectury.loom.toLibrary())
+    implementation(libs.plugins.shadow.toLibrary())
 
     // https://stackoverflow.com/a/70878181
     // https://github.com/gradle/gradle/issues/15383

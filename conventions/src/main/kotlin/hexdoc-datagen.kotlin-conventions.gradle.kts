@@ -1,10 +1,10 @@
 // plugin config
 
-interface KotlinConventionsPluginExtension {
+interface KotlinConventionsExtension {
     val versions: MapProperty<String, String>
 }
 
-val extension = extensions.create<KotlinConventionsPluginExtension>("kotlinConventions")
+val extension = extensions.create<KotlinConventionsExtension>("kotlinConventions")
 
 val versionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
 extension.versions.convention(provider {

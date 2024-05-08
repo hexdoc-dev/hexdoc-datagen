@@ -1,8 +1,10 @@
-abstract class CommonConventionsPluginExtension(private val project: Project) {
+// plugin config
+
+abstract class CommonConventionsExtension(private val project: Project) {
     private val baseArtifactID: String by project
 
-    fun platform(platformName: String) {
-        project.publishing {
+    fun platform(platformName: String) = project.run {
+        publishing {
             publications {
                 named<MavenPublication>("maven") {
                     artifactId = "$baseArtifactID-$platformName"
@@ -12,7 +14,9 @@ abstract class CommonConventionsPluginExtension(private val project: Project) {
     }
 }
 
-val extension = extensions.create<CommonConventionsPluginExtension>("commonConventions")
+val extension = extensions.create<CommonConventionsExtension>("commonConventions")
+
+// build logic
 
 plugins {
     id("hexdoc-datagen.kotlin-conventions")
@@ -22,7 +26,7 @@ plugins {
 
 loom {
     silentMojangMappingsLicense()
-    accessWidenerPath = projectPath(":common") { file("src/main/resources/hexdoc_datagen.accesswidener") }
+    accessWidenerPath = project(":common").file("src/main/resources/hexdoc_datagen.accesswidener")
 }
 
 dependencies {
@@ -40,8 +44,8 @@ dependencies {
 
 sourceSets {
     main {
-        kotlin.srcDirs += projectPath { dir("src/main/java") }
-        resources.srcDirs += projectPath { dir("src/generated/resources") }
+        kotlin.srcDirs += file("src/main/java")
+        resources.srcDirs += file("src/generated/resources")
     }
 }
 
