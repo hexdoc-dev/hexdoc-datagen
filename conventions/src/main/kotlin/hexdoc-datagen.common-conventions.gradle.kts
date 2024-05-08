@@ -1,5 +1,6 @@
 plugins {
     id("hexdoc-datagen.kotlin-conventions")
+    `maven-publish`
     id("dev.architectury.loom")
 }
 
@@ -25,5 +26,13 @@ sourceSets {
     main {
         kotlin.srcDirs += projectPath { dir("src/main/java") }
         resources.srcDirs += projectPath { dir("src/generated/resources") }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            url = uri(System.getenv("local_maven_url") ?: "")
+        }
     }
 }
