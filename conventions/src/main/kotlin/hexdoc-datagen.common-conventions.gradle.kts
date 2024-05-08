@@ -1,3 +1,19 @@
+abstract class CommonConventionsPluginExtension(private val project: Project) {
+    private val baseArtifactID: String by project
+
+    fun platform(platformName: String) {
+        project.publishing {
+            publications {
+                named<MavenPublication>("maven") {
+                    artifactId = "$baseArtifactID-$platformName"
+                }
+            }
+        }
+    }
+}
+
+val extension = extensions.create<CommonConventionsPluginExtension>("commonConventions")
+
 plugins {
     id("hexdoc-datagen.kotlin-conventions")
     `maven-publish`
@@ -33,6 +49,11 @@ publishing {
     repositories {
         maven {
             url = uri(System.getenv("local_maven_url") ?: "")
+        }
+    }
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
         }
     }
 }

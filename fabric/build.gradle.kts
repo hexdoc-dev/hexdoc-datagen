@@ -2,6 +2,10 @@ plugins {
     id("hexdoc-datagen.platform-conventions")
 }
 
+commonConventions {
+    platform("fabric")
+}
+
 kotlinConventions {
     versions = versions.get().mapValues { (_, version) ->
         version
